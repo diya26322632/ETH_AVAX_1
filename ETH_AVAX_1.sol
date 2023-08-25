@@ -17,29 +17,27 @@ contract CollegeManagement {
     
     function enrollStudent(uint _id, string memory _name) public {
         // require statement
-        require(!students[_uid].enrolled, "Student is already enrolled");
+        require(!students[_id].enrolled, "Student is already enrolled");
         
         // assert statement
         assert(bytes(_name).length > 0);
         
-        students[_uid] = Student(_uid, _name, true);
+        students[_id] = Student(_id, _name, true);
         studentCount++;
     }
     
     function graduateStudent(uint _id) public {
         // require statement
-        require(students[_uid].enrolled, "Student is not enrolled");
+        require(students[_id].enrolled, "Student is not enrolled");
         
-        students[_uid].enrolled = false;
+        students[_id].enrolled = false;
         studentCount--;
     }
     
     function updateStudentName(uint _id, string memory _name) public {
-        // revert statement
-        if (bytes(_name).length == 0) {
-            revert("Name cannot be empty");
-        }
+        // require statement
+        require(bytes(_name).length > 0, "Name cannot be empty");
         
-        students[_uid].name = _name;
+        students[_id].name = _name;
     }
 }
