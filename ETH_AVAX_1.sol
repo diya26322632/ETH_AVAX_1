@@ -40,4 +40,15 @@ contract CollegeManagement {
         
         students[_id].name = _name;
     }
+    function revertExample(uint256 a, uint256 b) public pure returns (uint256) {
+        if (b == 0) {
+            revert("Division by zero");
+        }
+        return a / b;
+    }
+    function assertExample(uint256 a, uint256 b) public pure returns (uint256) {
+        assert(b != 0); // Assert that b is not zero
+        return a / b;
+    }
+
 }
